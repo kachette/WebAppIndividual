@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classes & Activities</title>
+    <link rel="stylesheet" href="style/styles.css" type="text/css">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app"> <!-- Vue's element name -->
+        <header>
+            <h1 v-text="sitename"></h1>
+            <button class="buttoncheckout" @click='showCheckout'> <!-- @click or v-on - the same -->
+                {{ cartItemCount }}
+                <span class="fa fa-cart-plus"></span> <!-- cart logo -->
+                 Checkout
+            </button>
+        </header>
+        <main>
+        <div v-if='showProduct'> <!-- toggle between showing product -->
+            <figure>
+                <img class="image1" v-bind:src="product.image"> <!-- pulls image source -->
+            </figure>
+            <div id="productInfo" class="form">
+                <h2>Subject: {{product.title}}</h2> 
+                <p v-html="product.description"></p>
+                <p class="inventory">Classes available: {{product.availableInventory}}</p>
+                <p class="price">Price: £{{product.price}}</p>
+                <button class="buttoncart" v-on:click="addToCart"
+                v-if="canAddToCart"> Add To Cart</button>  <!-- 'canAddToCart' is computed on the vue app -->
+                <button class="buttoncartfull" disabled='disabled' 
+                v-else="disabled">We only have {{product.availableInventory}} available</button>
+                <!-- ^^^^ disables the cart button and shows "live" inventory -->
+                <!-- vvv new Vue app vvv  -->
+            </div>
+        </div>
+        </main>
+    </div>
+    <script src="vue.js"></script> 
+</body>
+</html>
