@@ -1,4 +1,4 @@
-# IndividualProject
+# WebAppIndividual
 The Project for the web-app development.
 
 The project for one of the modules of computer science degree in MDX university.
