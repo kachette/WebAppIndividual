@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Classes & Activities</title>
-    <link rel="stylesheet" href="style/styles.css" type="text/css">
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     
@@ -14,7 +14,6 @@
 <body>
     <div id="app"> <!-- Vue's element name -->
         <header>
-            <h1 v-text="sitename"></h1>
             <button class="buttoncheckout" @click='showCheckout'> <!-- @click or v-on - the same -->
                 {{ cartItemCount }}
                 <span class="fa fa-cart-plus"></span> <!-- cart logo -->
@@ -23,21 +22,57 @@
         </header>
         <main>
         <div v-if='showProduct'> <!-- toggle between showing product -->
+            <h1 v-text="sitename"></h1>
             <figure>
                 <img class="image1" v-bind:src="product.image"> <!-- pulls image source -->
             </figure>
-            <div id="productInfo" class="form">
+                <div class="form">
                 <h2>Subject: {{product.title}}</h2> 
                 <p v-html="product.description"></p>
                 <p class="inventory">Classes available: {{product.availableInventory}}</p>
                 <p class="price">Price: £{{product.price}}</p>
-                <button class="buttoncart" v-on:click="addToCart"
-                v-if="canAddToCart"> Add To Cart</button>  <!-- 'canAddToCart' is computed on the vue app -->
-                <button class="buttoncartfull" disabled='disabled' 
-                v-else="disabled">We only have {{product.availableInventory}} available</button>
+                <button class="buttoncart" v-on:click="addToCart" v-if="canAddToCart"> Add To Cart</button>
+                <button class="buttoncartfull" disabled='disabled' v-else="disabled">We only have {{product.availableInventory}} available</button>
                 <!-- ^^^^ disables the cart button and shows "live" inventory -->
                 <!-- vvv new Vue app vvv  -->
-            </div>
+                </div>
+        </div>
+
+        <div class="checkout" v-else='showCheckout'>
+            <h2>Checkout</h2>
+
+            <input type="checkbox" id="gift" value="true" 
+                v-model="order.gift"
+                v-bind:true-value="order.sendGift"
+                v-bind:false-value="order.dontSendGift">
+
+            <p><input type="radio" id="home" value="Home" v-model="order.method"><label for="home">Home</label> 
+            <input type="radio" id="business" value="Business" v-model="order.method"> 
+            <label for="business">Business</label></p>
+
+            <p><strong>First Name:</strong>  <input v-model="order.firstName"/></p>
+            <p><strong>Last Name:</strong>  <input v-model="order.lastName"/></p>
+            <p><strong>Address:</strong><input v-model="order.address"/></p>
+            <p><strong>City:</strong><input v-model="order.city"/></p>
+            <p><strong>State:</strong>
+                <select v-model="order.state">
+                <option disabled value="">State</option>
+                <option>AL</option>
+                <option>AR</option>
+                <option>CA</option>
+                <option>NV</option></select></p>
+            <p><strong>Zip/Postal Code:</strong><input v-model="order.zip"/></p>
+
+            <h2>Order Information</h2>
+
+            <p>First Name: {{order.firstName}}</p>
+            <p>Last Name: {{order.lastName}}</p>
+            <p>Address: {{order.address}}</p>
+            <p>City: {{order.city}}</p>
+            <p>Zip: {{order.zip}}</p>
+            <p>State: {{order.state}}</p>
+            <p id="gift" value="true" v-model="order.gift"><label v-text: for="gift">Gift? {{order.gift}}</label></p>
+            <button v-on:click="submitForm">PlaceOrder</button>
         </div>
         </main>
     </div>
