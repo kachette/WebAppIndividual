@@ -11,6 +11,7 @@ var webstore = new Vue ({
             price:20,
             image:"images/product.png",
             availableInventory: 5,
+            rating: 5
         },
         order:{
             firstName: '',

@@ -38,13 +38,13 @@
                 </div>
         </div>
 
-        <div class="checkout" v-else='showCheckout'>
+        <div class="checkout" v-else>
             <h2>Checkout</h2>
 
-            <input type="checkbox" id="gift" value="true" 
+            <p><input type="checkbox" id="gift" value="true" 
                 v-model="order.gift"
                 v-bind:true-value="order.sendGift"
-                v-bind:false-value="order.dontSendGift">
+                v-bind:false-value="order.dontSendGift"> Gift? </p>
 
             <p><input type="radio" id="home" value="Home" v-model="order.method"><label for="home">Home</label> 
             <input type="radio" id="business" value="Business" v-model="order.method"> 
