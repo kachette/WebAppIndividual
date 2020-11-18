@@ -9,36 +9,64 @@
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="https://unpkg.com/vue"></script>
+    <script src="products.js"></script>
 </head>
 
 <body>
     <div id="app"> <!-- Vue's element name -->
         <header>
             <button class="buttoncheckout" @click='showCheckout'> <!-- @click or v-on - the same -->
-                {{ cartItemCount }}
+                {{this.cart.length}}
                 <span class="fa fa-cart-plus"></span> <!-- cart logo -->
                  Checkout
             </button>
         </header>
         <main>
-        <div v-if='showProduct'> <!-- toggle between showing product -->
+        <div v-if='showProduct'>
             <h1 v-text="sitename"></h1>
-            <figure>
-                <img class="image1" v-bind:src="product.image"> <!-- pulls image source -->
-            </figure>
+            <div v-for='product in products'>
+
                 <div class="form">
-                <h2>Subject: {{product.title}}</h2> 
-                <p v-html="product.description"></p>
-                <p class="inventory">Classes available: {{product.availableInventory}}</p>
-                <p class="price">Price: £{{product.price}}</p>
-                <button class="buttoncart" v-on:click="addToCart" v-if="canAddToCart"> Add To Cart</button>
-                <button class="buttoncartfull" disabled='disabled' v-else="disabled">We only have {{product.availableInventory}} available</button>
-                <!-- ^^^^ disables the cart button and shows "live" inventory -->
-                <!-- vvv new Vue app vvv  -->
+                    <figure>
+                        <img class="image1" v-bind:src="product.image"> <!-- pulls image source -->
+                    </figure>
+                    <h2 v-text="product.title"></h2> 
+                    <form class="review">
+                        <span v-for='n in product.rating'>★</span>
+                        <span v-for='n in 5-product.rating'>☆</span>
+                    </form>
+                    <p v-html="product.description"></p>
+                    <p class="inventory">Classes available:
+                        {{product.availableInventory}}
+                    </p>
+
+                    <p class="price">Price: £{{product.price}}</p>
+
+                    <button class="buttoncart" 
+                        v-on:click='addToCart(product)'
+                        v-if='canAddToCart(product)'>
+                        Add To Cart
+                    </button>
+
+                    <button class="buttoncartfull" disabled='disabled' v-else>
+                        We only have {{product.availableInventory}} available
+                    </button>
+                    <span v-if='product.availableInventory === cartCount(product.id)'>
+                        All out!
+                    </span>
+                    <span v-else-if='product.availableInventory - cartCount(product.id) < 5'>
+                        Only {{product.availableInventory - cartCount(product.id)}} left.
+                    </span>
+                    <span v-else>
+                        Buy now!
+                    </span>
+
+                    
                 </div>
+            </div>
         </div>
 
-        <div class="checkout" v-else>
+        <div v-else class="checkout">
             <h2>Checkout</h2>
 
             <p><input type="checkbox" id="gift" value="true" 
@@ -50,29 +78,33 @@
             <input type="radio" id="business" value="Business" v-model="order.method"> 
             <label for="business">Business</label></p>
 
-            <p><strong>First Name:</strong>  <input v-model="order.firstName"/></p>
-            <p><strong>Last Name:</strong>  <input v-model="order.lastName"/></p>
-            <p><strong>Address:</strong><input v-model="order.address"/></p>
-            <p><strong>City:</strong><input v-model="order.city"/></p>
+            <p><strong>First Name:</strong>     <input v-model="order.firstName"/></p>
+            <p><strong>Last Name:</strong>      <input v-model="order.lastName"/></p>
+            <p><strong>Address:</strong>        <input v-model="order.address"/></p>
+            <p><strong>City:</strong>           <input v-model="order.city"/></p>
             <p><strong>State:</strong>
                 <select v-model="order.state">
                 <option disabled value="">State</option>
-                <option>AL</option>
-                <option>AR</option>
-                <option>CA</option>
-                <option>NV</option></select></p>
-            <p><strong>Zip/Postal Code:</strong><input v-model="order.zip"/></p>
+                <option v-for="(state, key) in states"
+                    v-bind:value="state">
+                        {{key}}
+                </option>
+                </select></p>
 
-            <h2>Order Information</h2>
+            <p><strong>Zip/Postal Code:</strong>  <input v-model="order.zip"/></p>
 
-            <p>First Name: {{order.firstName}}</p>
-            <p>Last Name: {{order.lastName}}</p>
-            <p>Address: {{order.address}}</p>
-            <p>City: {{order.city}}</p>
-            <p>Zip: {{order.zip}}</p>
-            <p>State: {{order.state}}</p>
-            <p id="gift" value="true" v-model="order.gift"><label v-text: for="gift">Gift? {{order.gift}}</label></p>
-            <button v-on:click="submitForm">PlaceOrder</button>
+            <div class="orderInformation">
+                <h2>Order Information</h2>
+    
+                <p>First Name: {{order.firstName}}</p>
+                <p>Last Name: {{order.lastName}}</p>
+                <p>Address: {{order.address}}</p>
+                <p>City: {{order.city}}</p>
+                <p>State: {{order.state}}</p>
+                <p>Zip: {{order.zip}}</p>
+                <p id="gift" value="true" v-model="order.gift"><label v-text: for="gift">{{order.gift}}</label></p>
+            </div>
+            <button class="submitButton"v-on:click="submitForm">Place Order</button>
         </div>
         </main>
     </div>

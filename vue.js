@@ -1,18 +1,11 @@
 var webstore = new Vue ({
     el:"#app",
     data: {
+    
+        products: products,
         showProduct: true,
         sitename: "Classes & Activities",
 
-        product:{
-            id:1001,
-            title:"Maths Class",
-            description:"An outstanding class" + " not taught by Gabriel",
-            price:20,
-            image:"images/product.png",
-            availableInventory: 5,
-            rating: 5
-        },
         order:{
             firstName: '',
             lastName: '',
@@ -25,26 +18,49 @@ var webstore = new Vue ({
             sendGift: 'Send as a gift',
             dontSendGift: 'Do not send as a gift'
         },
-            cart:[]
+            cart:[],
+            states: {
+                AL: 'Alabama',
+                AR: 'Arizona',
+                CA: 'California',
+                NV: 'Nevada'
+            }
     },
+    computed: {
+        sortedProducts(){
+        function compare(a, b) {
+            if (a.price > b.price) return 1;
+            if (a.price < b.price) return -1;
+            return 0;
+        }
+    }
+
+    },
+
     methods: {
-        addToCart: function() {
-            this.cart.push( this.product.id)
+        addToCart(product) {
+            this.cart.push(product.id);
+        },
+
+        canAddToCart(product) {
+            return product.availableInventory > this.cartCount(product.id);
+        },
+
+        cartCount(id) {
+            let count = 0;
+            for(let i = 0; i < this.cart.length; i++) {
+                if(this.cart[i] === id) count++;
+            }
+            return count;
         },
 
         showCheckout() {
             this.showProduct = this.showProduct ? false : true;
         },
 
-        submitForm() {alert('Order Submitted !')}
-    
-        },
-        computed: {
-        cartItemCount: function() {
-            return this.cart.length || '';
-    },
-        canAddToCart: function() {
-            return this.product.availableInventory > this.cartItemCount;
+        submitForm () {
+            alert('Order Submitted !')}
         }
+    
     }
-})
+)
