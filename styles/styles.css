@@ -9,15 +9,27 @@ h1{
     font-size: 36px;
 }
 
+.backtomenu {
+    margin-left: 5%;
+    margin-top: 3%;
+    display: inline-block;
+    padding: 5px 7.5px;
+    font-size: 10px;
+    color:green;
+}
+
 .buttoncheckout {
     background-color: Transparent;
     margin-left: 85%;
+    margin-top: 3%;
     border: none;
     display: inline-block;
     padding: 20px 30px;
     font-size: 14px;
     color:green;
 }
+
+
 
 .image1 {
     margin-left: 5%;

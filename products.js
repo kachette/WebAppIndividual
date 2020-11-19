@@ -1,18 +1,20 @@
 let products = [
     {
         id:1001,
-        title:"Maths Class",
-        description:"An outstanding class" + " very outstanding",
-        price:20,
+        title:"CS Class",
+        description:"An excelent class with the",
+        location: "Cork",
+        price:125,
         image:"images/product1.jpg",
         availableInventory: 10,
         rating: 3
     },
     {
         id:1002,
-        title:"A Class",
+        title:"Math Class",
         description:"An outstanding class" + " very outstanding",
-        price:30,
+        location: "Leeds",
+        price:100,
         image:"images/product1.jpg",
         availableInventory: 10,
         rating: 5
@@ -21,16 +23,18 @@ let products = [
         id:1003,
         title:"CS Class",
         description:"An outstanding class" + " very outstanding",
-        price:20,
+        location: "London",
+        price:300,
         image:"images/product1.jpg",
         availableInventory: 10,
         rating: 5
     },
     {
         id:1004,
-        title:"Fitness Class",
+        title:"Geo Class",
         description:"An outstanding class" + " very outstanding",
-        price:20,
+        location: "London",
+        price:100,
         image:"images/product1.jpg",
         availableInventory: 10,
         rating: 4
@@ -39,25 +43,68 @@ let products = [
         id:1005,
         title:"English Class",
         description:"An outstanding class" + " very outstanding",
-        price:20,
+        location: "Edinburgh",
+        price:300,
         image:"images/product1.jpg",
         availableInventory: 10,
         rating: 5
     },
     {
         id:1006,
-        title:"Informatics Class",
+        title:"French Class",
         description:"An outstanding class" + " very outstanding",
-        price:20,
+        location: "Liverpool",
+        price:50,
         image:"images/product1.jpg",
         availableInventory: 10,
         rating: 4
     },
     {
         id:1007,
-        title:"Maths Class",
+        title:"Dutch Class",
         description:"An outstanding class" + " very outstanding",
-        price:20,
+        location: "Cornwall",
+        price:150,
+        image:"images/product1.jpg",
+        availableInventory: 10,
+        rating: 3
+    },
+    {
+        id:1008,
+        title:"Coding Class",
+        description:"An outstanding class" + " very outstanding",
+        location: "London",
+        price:200,
+        image:"images/product1.jpg",
+        availableInventory: 10,
+        rating: 5
+    },
+    {
+        id:1009,
+        title:"German Class",
+        description:"An outstanding class" + " very outstanding",
+        location: "Birmingham",
+        price:100,
+        image:"images/product1.jpg",
+        availableInventory: 10,
+        rating: 4
+    },
+    {
+        id:1010,
+        title:"Testing Class",
+        description:"An outstanding class" + " very outstanding",
+        location: "Leeds",
+        price:200,
+        image:"images/product1.jpg",
+        availableInventory: 10,
+        rating: 4
+    },
+    {
+        id:1011,
+        title:"Hacking Class",
+        description:"An outstanding class" + " very outstanding",
+        location: "London",
+        price:200,
         image:"images/product1.jpg",
         availableInventory: 10,
         rating: 5

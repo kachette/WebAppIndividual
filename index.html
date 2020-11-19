@@ -16,13 +16,12 @@
     <div id="app"> <!-- Vue's element name -->
         <header>
             
+            
             <button class="buttoncheckout" @click='showCheckout' v-if='isHideCart'> <!-- @click or v-on - the same -->
                 {{this.cart.length}}
                 <span class="fa fa-cart-plus"></span> <!-- cart logo -->
-                 Checkout
+                <button class="backtomenu" @click="showCheckout" v-if="!showProduct">Back</button>
             </button>
-
-            <button @click="showCheckout" v-if="!showProduct">Back</button>
         </header>
         <main>
         <div v-if='showProduct'>
@@ -48,9 +47,10 @@
                         <span v-for='n in 5-product.rating'>☆</span>
                     </form>
                     <p v-html="product.description"></p>
-                    <p class="inventory">Classes available:
+                    <p class="inventory"><strong>Classes Available::</strong>
                         {{product.availableInventory - cartCount(product.id)}}
                     </p>
+                    <p><strong>Location:</strong> {{product.location}}</p>
 
                     <p class="price">Price: £{{product.price}}</p>
 
