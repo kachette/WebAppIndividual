@@ -10,7 +10,7 @@ let products = [
     },
     {
         id:1002,
-        title:"Geo Class",
+        title:"A Class",
         description:"An outstanding class" + " very outstanding",
         price:30,
         image:"images/product1.jpg",

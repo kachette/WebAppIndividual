@@ -15,16 +15,28 @@
 <body>
     <div id="app"> <!-- Vue's element name -->
         <header>
-            <button class="buttoncheckout" @click='showCheckout'> <!-- @click or v-on - the same -->
+            
+            <button class="buttoncheckout" @click='showCheckout' v-if='isHideCart'> <!-- @click or v-on - the same -->
                 {{this.cart.length}}
                 <span class="fa fa-cart-plus"></span> <!-- cart logo -->
                  Checkout
             </button>
+
+            <button @click="showCheckout" v-if="!showProduct">Back</button>
         </header>
         <main>
         <div v-if='showProduct'>
             <h1 v-text="sitename"></h1>
-            <div v-for='product in products'>
+
+            <input type="checkbox" id="jack" value="Jack" v-model="checkedFilters">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="John" v-model="checkedFilters">
+            <label for="john">John</label>
+            <input type="checkbox" id="mike" value="Mike" v-model="checkedFilters">
+            <label for="mike">Mike</label>
+            <br>
+            <span>Checked names: {{ checkedNames }}</span>
+            <div v-for="product in products">
 
                 <div class="form">
                     <figure>
@@ -54,7 +66,7 @@
                     <span v-if='product.availableInventory === cartCount(product.id)'>
                         All out!
                     </span>
-                    <span v-else-if='product.availableInventory - cartCount(product.id) < 5'>
+                    <span v-else-if='product.availableInventory - cartCount(product.id) < 6'>
                         Only {{product.availableInventory - cartCount(product.id)}} left.
                     </span>
                     <span v-else>
@@ -67,6 +79,7 @@
         </div>
 
         <div v-else class="checkout">
+
             <h2>Checkout</h2>
 
             <p><input type="checkbox" id="gift" value="true" 
@@ -78,12 +91,18 @@
             <input type="radio" id="business" value="Business" v-model="order.method"> 
             <label for="business">Business</label></p>
 
-            <p><strong>First Name:</strong>     <input v-model="order.firstName"/></p>
-            <p><strong>Last Name:</strong>      <input v-model="order.lastName"/></p>
-            <p><strong>Address:</strong>        <input v-model="order.address"/></p>
-            <p><strong>City:</strong>           <input v-model="order.city"/></p>
+            
+            <p><strong>First Name:</strong>     <input placeholder="Name" v-model="order.firstName">
+            <label v-if="!nameValid">Letters Only!</label></p>
+            <p><strong>Last Name:</strong>      <input placeholder="Last Name" v-model="order.lastName"/></p>
+            <p><strong>Phone:</strong>          <input placeholder="+44.." v-model="order.phone"/>
+            <label v-if="!phoneValid">0-9 and + Only!</label></p>
+            <p><strong>Address:</strong>        <input placeholder="Adress" v-model="order.address"/></p>
+            <p><strong>City:</strong>           <input placeholder="City" v-model="order.city"/></p>
+            <p><strong>Post Code:</strong>      <input placeholder="Post Code" v-model="order.zip"/></p>
+
             <p><strong>State:</strong>
-                <select v-model="order.state">
+                <select  v-model="order.state">
                 <option disabled value="">State</option>
                 <option v-for="(state, key) in states"
                     v-bind:value="state">
@@ -91,7 +110,7 @@
                 </option>
                 </select></p>
 
-            <p><strong>Zip/Postal Code:</strong>  <input v-model="order.zip"/></p>
+            
 
             <div class="orderInformation">
                 <h2>Order Information</h2>
@@ -100,11 +119,12 @@
                 <p>Last Name: {{order.lastName}}</p>
                 <p>Address: {{order.address}}</p>
                 <p>City: {{order.city}}</p>
-                <p>State: {{order.state}}</p>
                 <p>Zip: {{order.zip}}</p>
+                <p>State: {{order.state}}</p>
+                
                 <p id="gift" value="true" v-model="order.gift"><label v-text: for="gift">{{order.gift}}</label></p>
             </div>
-            <button class="submitButton"v-on:click="submitForm">Place Order</button>
+            <button class="submitButton"v-on:click="submitForm" :disabled="!isDisable">Place Order</button>
         </div>
         </main>
     </div>
