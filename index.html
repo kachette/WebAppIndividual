@@ -49,7 +49,7 @@
                     </form>
                     <p v-html="product.description"></p>
                     <p class="inventory">Classes available:
-                        {{product.availableInventory}}
+                        {{product.availableInventory - cartCount(product.id)}}
                     </p>
 
                     <p class="price">Price: £{{product.price}}</p>
