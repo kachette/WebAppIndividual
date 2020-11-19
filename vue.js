@@ -36,8 +36,8 @@ var webstore = new Vue ({
         /// does not work
         sortedProducts(){
             function compare(a, b) {
-                if (a.location > b.location) return 1;
-                if (a.location < b.location) return -1;
+                if (a.title > b.title) return 1;
+                if (a.title < b.title) return -1;
                 return 0;
             }
             return this.products.sort(compare)

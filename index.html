@@ -28,14 +28,22 @@
             <h1 v-text="sitename"></h1>
 
             <input type="checkbox" id="jack" value="Jack" v-model="checkedFilters">
-            <label for="jack">Jack</label>
-            <input type="checkbox" id="john" value="John" v-model="checkedFilters">
-            <label for="john">John</label>
-            <input type="checkbox" id="mike" value="Mike" v-model="checkedFilters">
-            <label for="mike">Mike</label>
+            <label for="jack">Title</label>
             <br>
-            <span>Checked names: {{ checkedNames }}</span>
-            <div v-for="product in products">
+            <input type="checkbox" id="john" value="John" v-model="checkedFilters">
+            <label for="john">Location</label>
+            <br>
+            <input type="checkbox" id="price" value="Price" v-model="checkedFilters">
+            <label for="price">Price</label>
+            <br>
+            <input type="checkbox" id="ascending" value="Mike" v-model="checkedFilters">
+            <label for="mike">Ascending</label>
+            <br>
+            <input type="checkbox" id="descending" value="Mike" v-model="checkedFilters">
+            <label for="mike">Descending</label>
+            
+
+            <div v-for="product in sortedProducts">
 
                 <div class="form">
                     <figure>
