@@ -22,25 +22,29 @@
                 <span class="fa fa-cart-plus"></span> <!-- cart logo -->
                 <button class="backtomenu" @click="showCheckout" v-if="!showProduct">Back</button>
             </button>
+            
+            
         </header>
         <main>
         <div v-if='showProduct'>
             <h1 v-text="sitename"></h1>
 
-            <input type="checkbox" id="titleFilterAscending" value="titleFilterAscending" v-model="titleFilterAscending">
-            <label for="titleFilterAscending">Title Ascending </label>
-            <input type="checkbox" id="titleFilterDescending" value="titleFilterDescending" v-model="titleFilterDescending">
-            <label for="titleFilterDescending">Title Descending </label>
-            
-            <input type="checkbox" id="locationFilterAscending" value="locationFilterAscending" v-model="locationFilterAscending">
-            <label for="locationFilterAscending">Location Ascending</label>
-            <input type="checkbox" id="locationFilterDescending" value="locationFilterDescending" v-model="locationFilterDescending">
-            <label for="locationFilterDescending">Location Descending</label>
+            <div class="filters">
+                <input type="checkbox" id="titleFilterAscending" value="titleFilterAscending" v-model="titleFilterAscending">
+                <label for="titleFilterAscending">Title Ascending </label>
+                <input type="checkbox" id="titleFilterDescending" value="titleFilterDescending" v-model="titleFilterDescending">
+                <label for="titleFilterDescending">Title Descending </label>
+                
+                <input type="checkbox" id="locationFilterAscending" value="locationFilterAscending" v-model="locationFilterAscending">
+                <label for="locationFilterAscending">Location Ascending</label>
+                <input type="checkbox" id="locationFilterDescending" value="locationFilterDescending" v-model="locationFilterDescending">
+                <label for="locationFilterDescending">Location Descending</label>
 
-            <input type="checkbox" id="priceFilterAscending" value="priceFilterAscending" v-model="priceFilterAscending">
-            <label for="priceFilterAscending">Price Ascending</label>
-            <input type="checkbox" id="priceFilterDescending" value="priceFilterDescending" v-model="priceFilterDescending">
-            <label for="priceFilterDescending">Price Descending</label>
+                <input type="checkbox" id="priceFilterAscending" value="priceFilterAscending" v-model="priceFilterAscending">
+                <label for="priceFilterAscending">Price Ascending</label>
+                <input type="checkbox" id="priceFilterDescending" value="priceFilterDescending" v-model="priceFilterDescending">
+                <label for="priceFilterDescending">Price Descending</label>
+            </div> 
 
             
 
@@ -88,6 +92,7 @@
         </div>
 
         <div v-else class="checkout">
+
 
             <h2>Checkout</h2>
 

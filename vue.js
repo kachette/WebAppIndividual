@@ -68,8 +68,6 @@ var webstore = new Vue ({
                 return this.cart.length >0;
         },
 
-        
-
         titleAscending() {
             function compare(a, b) {
                 if (a.title > b.title) return 1;
@@ -142,7 +140,7 @@ var webstore = new Vue ({
 
         ///works fine
         addToCart(product) {
-            this.cart.push(product.id);
+            return this.cart.push({id: product.id, title: product.title, price: product.price });
         },
 
         ///woking fine

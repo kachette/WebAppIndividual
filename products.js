@@ -5,7 +5,7 @@ let products = [
         description:"An excelent class with the",
         location: "Cork",
         price:125,
-        image:"images/product1.jpg",
+        image:"images/product1.png",
         availableInventory: 10,
         rating: 3
     },
@@ -15,7 +15,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "Leeds",
         price:100,
-        image:"images/product1.jpg",
+        image:"images/product2.png",
         availableInventory: 10,
         rating: 5
     },
@@ -25,7 +25,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "London",
         price:300,
-        image:"images/product1.jpg",
+        image:"images/product3.png",
         availableInventory: 10,
         rating: 5
     },
@@ -35,7 +35,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "London",
         price:100,
-        image:"images/product1.jpg",
+        image:"images/product4.jpg",
         availableInventory: 10,
         rating: 4
     },
@@ -45,7 +45,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "Edinburgh",
         price:300,
-        image:"images/product1.jpg",
+        image:"images/product5.jpg",
         availableInventory: 10,
         rating: 5
     },
@@ -55,7 +55,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "Liverpool",
         price:50,
-        image:"images/product1.jpg",
+        image:"images/product6.png",
         availableInventory: 10,
         rating: 4
     },
@@ -65,7 +65,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "Cornwall",
         price:150,
-        image:"images/product1.jpg",
+        image:"images/product7.png",
         availableInventory: 10,
         rating: 3
     },
@@ -75,7 +75,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "London",
         price:200,
-        image:"images/product1.jpg",
+        image:"images/product8.png",
         availableInventory: 10,
         rating: 5
     },
@@ -85,7 +85,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "Birmingham",
         price:100,
-        image:"images/product1.jpg",
+        image:"images/product9.png",
         availableInventory: 10,
         rating: 4
     },
@@ -95,7 +95,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "Leeds",
         price:200,
-        image:"images/product1.jpg",
+        image:"images/product10.png",
         availableInventory: 10,
         rating: 4
     },
@@ -105,7 +105,7 @@ let products = [
         description:"An outstanding class" + " very outstanding",
         location: "London",
         price:200,
-        image:"images/product1.jpg",
+        image:"images/product11.png",
         availableInventory: 10,
         rating: 5
     }
