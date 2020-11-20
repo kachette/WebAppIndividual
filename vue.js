@@ -5,7 +5,22 @@ var webstore = new Vue ({
         products: products,
         showProduct: true,
         sitename: "Classes & Activities",
-
+        cart:[],
+        hideCart: false,
+        states: {
+            AL: 'Alabama',
+            AR: 'Arizona',
+            CA: 'California',
+            NV: 'Nevada'
+        },
+        titleFilterAscending: false,
+        titleFilterDescending: false,
+        locationFilterAscending: false,
+        locationFilterDescending: false,
+        priceFilterAscending: false,
+        priceFilterDescending: false
+        ,
+        
         order:{
             firstName: '',
             lastName: '',
@@ -19,22 +34,13 @@ var webstore = new Vue ({
             order: false,
             sendGift: 'Send as a gift',
             dontSendGift: 'Do not send as a gift'
-        },
-            cart:[],
-            hideCart: false,
-            states: {
-                AL: 'Alabama',
-                AR: 'Arizona',
-                CA: 'California',
-                NV: 'Nevada'
-            },
-            checkedFilters: [],
-            
-
+        }
+    
     },
+
     computed: {
         /// does not work
-        sortedProducts(){
+        sortedProduct(){
             function compare(a, b) {
                 if (a.title > b.title) return 1;
                 if (a.title < b.title) return -1;
@@ -60,8 +66,75 @@ var webstore = new Vue ({
         },
         isHideCart () {
                 return this.cart.length >0;
-        }
+        },
 
+        
+
+        titleAscending() {
+            function compare(a, b) {
+                if (a.title > b.title) return 1;
+                if (a.title < b.title) return -1;
+                return 0;
+            }
+            return this.products.sort(compare);
+        },
+
+        titleDescending() {
+            function compare(a, b) {
+                if (a.title > b.title) return -1;
+                if (a.title < b.title) return 1;
+                return 0;
+            }
+            return this.products.sort(compare);
+        },
+
+        locationAscending() {
+            function compare(a, b) {
+                if (a.location > b.location) return 1;
+                if (a.location < b.location) return -1;
+                return 0;
+            }
+            return this.products.sort(compare);
+        },
+
+        locationeDescending() {
+            function compare(a, b) {
+                if (a.location > b.location) return -1;
+                if (a.location < b.location) return 1;
+                return 0;
+            }
+            return this.products.sort(compare);
+        },
+
+        priceAscending() {
+            return this.products.sort((a, b) => a.price - b.price );
+        },
+        priceDescending() {
+            return this.products.sort((b, a) => a.price - b.price );
+        },
+
+
+        sortedProducts(){
+            if(this.titleFilterDescending)
+                return this.titleDescending;
+
+            else if(this.titleFilterAscending)
+                return this.titleAscending;
+
+            else if(this.locationFilterAscending)
+                return this.locationAscending;
+            
+            else if(this.locationFilterDescending)
+                return this.locationeDescending;
+
+            else if(this.priceFilterAscending)
+                return this.priceAscending;
+
+            else if(this.priceFilterDescending)
+                return this.priceDescending;
+            else
+                return this.titleAscending;
+            }
     },
         
 

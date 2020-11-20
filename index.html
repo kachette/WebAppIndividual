@@ -27,20 +27,21 @@
         <div v-if='showProduct'>
             <h1 v-text="sitename"></h1>
 
-            <input type="checkbox" id="jack" value="Jack" v-model="checkedFilters">
-            <label for="jack">Title</label>
-            <br>
-            <input type="checkbox" id="john" value="John" v-model="checkedFilters">
-            <label for="john">Location</label>
-            <br>
-            <input type="checkbox" id="price" value="Price" v-model="checkedFilters">
-            <label for="price">Price</label>
-            <br>
-            <input type="checkbox" id="ascending" value="Mike" v-model="checkedFilters">
-            <label for="mike">Ascending</label>
-            <br>
-            <input type="checkbox" id="descending" value="Mike" v-model="checkedFilters">
-            <label for="mike">Descending</label>
+            <input type="checkbox" id="titleFilterAscending" value="titleFilterAscending" v-model="titleFilterAscending">
+            <label for="titleFilterAscending">Title Ascending </label>
+            <input type="checkbox" id="titleFilterDescending" value="titleFilterDescending" v-model="titleFilterDescending">
+            <label for="titleFilterDescending">Title Descending </label>
+            
+            <input type="checkbox" id="locationFilterAscending" value="locationFilterAscending" v-model="locationFilterAscending">
+            <label for="locationFilterAscending">Location Ascending</label>
+            <input type="checkbox" id="locationFilterDescending" value="locationFilterDescending" v-model="locationFilterDescending">
+            <label for="locationFilterDescending">Location Descending</label>
+
+            <input type="checkbox" id="priceFilterAscending" value="priceFilterAscending" v-model="priceFilterAscending">
+            <label for="priceFilterAscending">Price Ascending</label>
+            <input type="checkbox" id="priceFilterDescending" value="priceFilterDescending" v-model="priceFilterDescending">
+            <label for="priceFilterDescending">Price Descending</label>
+
             
 
             <div v-for="product in sortedProducts">
@@ -55,7 +56,7 @@
                         <span v-for='n in 5-product.rating'>☆</span>
                     </form>
                     <p v-html="product.description"></p>
-                    <p class="inventory"><strong>Classes Available::</strong>
+                    <p class="inventory"><strong>Classes Available:</strong>
                         {{product.availableInventory - cartCount(product.id)}}
                     </p>
                     <p><strong>Location:</strong> {{product.location}}</p>
@@ -130,7 +131,7 @@
                 <p>Zip: {{order.zip}}</p>
                 <p>State: {{order.state}}</p>
                 
-                <p id="gift" value="true" v-model="order.gift"><label v-text: for="gift">{{order.gift}}</label></p>
+                <p id="gift" value="true" v-bind="order.dontSendGift"><label v-text: for="gift">{{order.gift}}</label></p>
             </div>
             <button class="submitButton"v-on:click="submitForm" :disabled="!isDisable">Place Order</button>
         </div>
