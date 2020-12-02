@@ -140,7 +140,7 @@ var webstore = new Vue ({
 
         ///works fine
         addToCart(product) {
-            return this.cart.push({id: product.id, title: product.title, price: product.price });
+            return this.cart.push(product.id);
         },
 
         ///woking fine
