@@ -34,19 +34,21 @@ var webstore = new Vue ({
             sendGift: 'Send as a gift',
             dontSendGift: 'Do not send as a gift'
         }
+        
             
+    },
+    created: function() {
+        fetch('https://cw2app.herokuapp.com/').then(
+            function (response) {
+                response.json().then(
+                    function (json) {
+                        webstore.products = json;
+                    });
+            })
     },
 
     computed: {
-        created: function() {
-            fetch('https://cw2app.herokuapp.com/').then(
-                function (response) {
-                    response.json().then(
-                        function (json) {
-                            webstore.products = json;
-                        });
-                })
-        },
+        
         /// does not work
         sortedProduct(){
             function compare(a, b) {
