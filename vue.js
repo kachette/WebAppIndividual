@@ -1,6 +1,7 @@
 var webstore = new Vue ({
     el:"#app",
     data: {
+        products: {},
         showProduct: true,
         sitename: "Classes & Activities",
         cart:[],
@@ -32,21 +33,20 @@ var webstore = new Vue ({
             order: false,
             sendGift: 'Send as a gift',
             dontSendGift: 'Do not send as a gift'
-        },
-        products:{} 
-    
-    },
-    created: function() {
-        fetch('https://cw2app.herokuapp.com/').then(
-            function (response) {
-                response.json().then(
-                    function (json) {
-                        webstore.products = json;
-                    });
-                })
+        }
+            
     },
 
     computed: {
+        created: function() {
+            fetch('https://cw2app.herokuapp.com/').then(
+                function (response) {
+                    response.json().then(
+                        function (json) {
+                            webstore.products = json;
+                        });
+                })
+        },
         /// does not work
         sortedProduct(){
             function compare(a, b) {
