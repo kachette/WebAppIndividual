@@ -1,7 +1,7 @@
 var webstore = new Vue ({
     el:"#app",
     data: {
-        products: {},
+        products: [],
         showProduct: true,
         sitename: "Classes & Activities",
         cart:[],
@@ -48,7 +48,6 @@ var webstore = new Vue ({
     },
 
     computed: {
-        
         /// does not work
         sortedProduct(){
             function compare(a, b) {
